@@ -2,6 +2,7 @@
 import * as express from 'express';
 import * as dotenv from 'dotenv';
 import { JwtPayload } from 'jsonwebtoken';
+import { AppDataSource } from './module/clientData';
 
 declare global
 {
@@ -18,6 +19,7 @@ declare global
 // Init environment variables (see .env.local file if it doesn't exist go to README.md file)
 dotenv.config({ path: '.env' });
 
+AppDataSource.initialize().then(async () => {
 
 // Express server creation
 const app = express();
@@ -62,3 +64,4 @@ app.listen(port, () =>
         `Express server has started on port ${port}. Open http://localhost:${port} to see results`
     );
 });
+}).catch((error: unknown) => console.log(error))
