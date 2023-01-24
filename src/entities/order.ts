@@ -1,17 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, BaseEntity,ManyToOne } from "typeorm"
+import { Client } from "./client"
+import { Entity, PrimaryGeneratedColumn, BaseEntity, ManyToOne } from "typeorm"
 import { Menu } from "./menu"
 import { Restaurant } from "./restaurant"
 
-@Entity('orders')
+@Entity('order')
 export class Order extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-@ManyToOne (()=> Menu, (menu)=> menu.orders)
+    @ManyToOne(() => Client, (client) => client.order)
+    client: Client
 
-       menu: Menu
+    @ManyToOne(() => Menu, (menu) => menu.orders)
 
-@ManyToOne(()=> Restaurant, (restaurant) => restaurant.orders)
+    menu: Menu
 
-  restaurant : Restaurant
+    @ManyToOne(() => Restaurant, (restaurant) => restaurant.orders)
+
+    restaurant: Restaurant
 } 

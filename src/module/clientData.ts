@@ -6,7 +6,6 @@ import { Order } from '../entities/order';
 import { Menu } from '../entities/menu';
 import { Restaurant } from '../entities/restaurant';
 dotenv.config ({ path: '.env' })
-console.log (process.env.DB_PASSWORD);
 
 export const AppDataSource = new DataSource({
     type: "postgres",
