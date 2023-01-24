@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { Client } from '../entities/client';
 const router = express.Router();
+import { AppDataSource } from '../module/clientData';
 
 
 router.post('/api/client', async (req,res)=>{ // creer un objet pour l'utilisateur
@@ -11,7 +12,7 @@ router.post('/api/client', async (req,res)=>{ // creer un objet pour l'utilisate
     } = req.body;
 
     const client = Client.create({  
-        name : name,            // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
+        surname :  name,            // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
         password : password 
 
     });

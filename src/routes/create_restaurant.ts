@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { Restaurant } from '../entities/restaurant';
 const router = express.Router();
+import { AppDataSource } from '../module/clientData';
 
 
 router.post('/api/restaurant', async (req,res)=>{ // creer un objet pour l'utilisateur

@@ -1,4 +1,5 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, BaseEntity, Column, PrimaryGeneratedColumn,OneToMany } from "typeorm"
+import { Order } from "./order"
 
 @Entity('menus')
 export class Menu extends BaseEntity {
@@ -13,4 +14,7 @@ export class Menu extends BaseEntity {
     })
     price: number
 
-}
+    @OneToMany (() => Order, (order) => order.menu)
+    orders : Order[]
+
+} 
