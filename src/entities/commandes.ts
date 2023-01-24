@@ -1,13 +1,20 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm"
 
-@Entity()
-export class Commande {
+@Entity('commandes')
+export class Commande extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    create_at: Date
+    @CreateDateColumn()
+    create_at: Date;
 
+    @UpdateDateColumn()
+    update_at: Date;
+
+    @Column({
+        default: true
+    })
+    isAvailable: boolean; // ou en Date A VOIR
     @Column()
-    served: boolean // ou en Date A VOIR
+    price: number;
 }

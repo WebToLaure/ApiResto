@@ -1,11 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm"
 
-@Entity()
-export class Restaurant {
+@Entity('restaurants')
+export class Restaurant extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
     ville: string
+
+
 
 }
