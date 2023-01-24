@@ -3,10 +3,10 @@ import * as express from 'express';
 import * as dotenv from 'dotenv';
 import { JwtPayload } from 'jsonwebtoken';
 import { AppDataSource } from './module/clientData';
-import { createClientRouter } from './routes/create_client';
-import { createOrderRouter } from './routes/create_order';
-import { createRestaurantRouter } from './routes/create_restaurant';
-import { createMenuRouter } from './routes/create_menu';
+import { createClientRouter } from './routes/clientRouter';
+import { createOrderRouter } from './routes/orderRouter';
+import { createRestaurantRouter } from './routes/restaurantRouter';
+import { createMenuRouter } from './routes/menuRouter';
 
 declare global
 {
