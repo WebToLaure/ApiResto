@@ -1,8 +1,11 @@
 import * as dotenv from 'dotenv';
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Client } from "../entities/client"
-dotenv.config({ path: '.env' })
+import { Client } from '../entities/client';
+import { Order } from '../entities/order';
+import { Menu } from '../entities/menu';
+import { Restaurant } from '../entities/restaurant';
+dotenv.config ({ path: '.env' })
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,7 +14,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Client],
+    entities: [Client, Order, Menu, Restaurant],
     synchronize: false, // A PASSER A TRUE POUR LA SYNCHRO AVEC LA BDD
     logging: false,
 })
