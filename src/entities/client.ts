@@ -7,8 +7,11 @@ export class Client extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    name: string;
+    @Column({
+
+        unique: true
+    })
+    surname: string;
 
     @Column()
     password: string;

@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 import { JwtPayload } from 'jsonwebtoken';
 import { AppDataSource } from './module/clientData';
 import { createClientRouter } from './routes/create_client';
-import { createCommandeRouter } from './routes/create_commande';
+import { createOrderRouter } from './routes/create_order';
 import { createRestaurantRouter } from './routes/create_restaurant';
 import { createMenuRouter } from './routes/create_menu';
 
@@ -32,7 +32,7 @@ const port = process.env.PORT || 8080;
 // for parsing application/json
 app.use(express.json());
 app.use(createClientRouter);
-app.use(createCommandeRouter);
+app.use(createOrderRouter);
 app.use(createRestaurantRouter);
 app.use(createMenuRouter);
 

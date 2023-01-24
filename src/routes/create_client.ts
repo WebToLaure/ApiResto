@@ -10,8 +10,8 @@ router.post('/api/client', async (req,res)=>{ // creer un objet pour l'utilisate
 
     } = req.body;
 
-    const client = Client.create({  // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
-        name : name,
+    const client = Client.create({  
+        name : name,            // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
         password : password 
 
     });
@@ -21,6 +21,7 @@ await client.save ();  //sauvergarde pour database
 return res.json(client);
 
 });
+
 export { 
     router as createClientRouter
 }

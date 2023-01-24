@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Restaurant } from '../entities/restaurants';
+import { Restaurant } from '../entities/restaurant';
 const router = express.Router();
 
 

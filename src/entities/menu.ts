@@ -8,7 +8,9 @@ export class Menu extends BaseEntity {
     @Column()
     name: string
 
-    @Column()
-    amount: number
+    @Column({
+        type:'numeric'
+    })
+    price: number
 
 }

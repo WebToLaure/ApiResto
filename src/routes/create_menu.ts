@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Menu } from '../entities/menus';
+import { Menu } from '../entities/menu';
 const router = express.Router();
 
 router.post('/api/menu', async (req, res) => { // creer un objet pour l'utilisateur
