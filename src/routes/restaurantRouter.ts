@@ -1,27 +1,10 @@
 import * as express from 'express';
-import { Restaurant } from '../entities/restaurant';
-const router = express.Router();
-import { AppDataSource } from '../module/clientData';
 
+import { RestaurantControllers } from '../controllers/restaurantController';
+const restaurantControllers = new RestaurantControllers()
 
-router.post('/api/restaurant', async (req,res)=>{ // creer un objet pour l'utilisateur
-    const {
-        name,
-        password
+export const restaurantRouter = express.Router();
 
-    } = req.body;
+restaurantRouter.post('/register', restaurantControllers.createRestaurant);
+restaurantRouter.get('/', restaurantControllers.getAllRestaurant);
 
-    const restaurant = Restaurant.create({  // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
-   
-     
-
-    });
-
-await restaurant.save ();  //sauvergarde pour database
-
-return res.json(restaurant);
-
-});
-export { 
-    router as createRestaurantRouter
-}

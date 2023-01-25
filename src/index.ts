@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv';
 import { JwtPayload } from 'jsonwebtoken';
 import { AppDataSource } from './module/clientData';
 import { clientRouter } from './routes/clientRouter';
-import { createOrderRouter } from './routes/orderRouter';
-import { createRestaurantRouter } from './routes/restaurantRouter';
+import { orderRouter } from './routes/orderRouter';
+import { restaurantRouter } from './routes/restaurantRouter';
 import { createMenuRouter } from './routes/menuRouter';
 
 
@@ -32,10 +32,11 @@ const port = process.env.PORT || 8080;
 
 // for parsing application/json
 app.use(express.json());
+
 app.use('/api/client', clientRouter);
-app.use(createOrderRouter);
-app.use(createRestaurantRouter);
-app.use(createMenuRouter);
+app.use(orderRouter);
+app.use('/api/restaurant', restaurantRouter);
+//app.use('/api/menu', menuRouter);
 
 
 // Add headers before the routes are defined
