@@ -3,10 +3,11 @@ import * as express from 'express';
 import * as dotenv from 'dotenv';
 import { JwtPayload } from 'jsonwebtoken';
 import { AppDataSource } from './module/clientData';
-import { createClientRouter } from './routes/clientRouter';
+import { clientRouter } from './routes/clientRouter';
 import { createOrderRouter } from './routes/orderRouter';
 import { createRestaurantRouter } from './routes/restaurantRouter';
 import { createMenuRouter } from './routes/menuRouter';
+
 
 declare global
 {
@@ -31,7 +32,7 @@ const port = process.env.PORT || 8080;
 
 // for parsing application/json
 app.use(express.json());
-app.use(createClientRouter);
+app.use('/api/client', clientRouter);
 app.use(createOrderRouter);
 app.use(createRestaurantRouter);
 app.use(createMenuRouter);
