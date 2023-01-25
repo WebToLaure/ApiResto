@@ -1,5 +1,4 @@
 import * as express from 'express';
-import { Menu } from '../entities/menu';
 const router = express.Router();
 import { AppDataSource } from '../module/clientData';
 
