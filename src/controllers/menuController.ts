@@ -1,33 +1,51 @@
 import { MenuService } from "../services/menuService";
+import { Request, Response } from "express";
+
+
 
 const menuService = new MenuService();
 
+export class MenuControllers {
+    async CreateMenu(req: Request, res: Response) {
 
-export class MenuController {
-    /** CreateArticle => renvoie à la méthode articlesService.addArticle */
-    export const CreateMenu = async (req : any, res: any) {
+        const name = req.body.name;
+        const price = req.body.price;
 
-        const userId = req.userId;
-        const message = req.body.message;
-        const title = req.body.title;
 
-        if (typeof message !== "string" || typeof title != "string") {
+        if (!name) {
+            res.status(400).json({
+                status: "FAIL",
+                data: undefined,
+                message: "veuillez renseigner tous les champs"
+            });
+        }
+
+        if (price == null) {
+            res.status(400).json({
+                status: "FAIL",
+                data: undefined,
+                message: "veuillez renseigner tous les champs"
+            });
+        }
+
+        if (typeof name !== "string" || typeof price != "number") {
 
             res.status(400).json({
                 status: "FAIL",
                 data: undefined,
                 message: "erreur de syntaxe"
             });
+
             return;
         }
 
         try {
-            const article = await menuService.addMenu(title, message, userId);
+            const menu = await menuService.addMenu(name, price);
 
             res.status(201).json({
                 status: "Created",
-                data: article,
-                message: "Article publié"
+                data: menu,
+                message: "Création du menu effectuée"
             });
 
         }
@@ -39,8 +57,7 @@ export class MenuController {
             });
         }
     }
-    /** function getAllArticles => renvoie à la méthode articlesService.getArticles */
-    async getAllMenus(req, res) {
+    async getAllMenus(_req: Request, res: Response) {
 
         try {
             const menu = await menuService.getMenus();
@@ -59,10 +76,10 @@ export class MenuController {
             });
         }
     }
-    /** function getByArticle => renvoie à la méthode articlesService.getOneArticle */
-    async getByArticle(req :any, res: any) {
 
-        const id = req.params.id;
+    async getOneMenu(req: Request, res: Response) {
+
+        const id: number = parseInt(req.params.id); // permet de recup l'id(en string) sous forme de number
 
         try {
             const menu = await menuService.getMenuById(id);
@@ -90,15 +107,14 @@ export class MenuController {
             });
         }
     }
-    /** function updateArticle => renvoie à la méthode articlesService.getOneArticle + articlesService.updateArticle */
-    async updateArticle(req: any, res: any) {
+    async updateMenu(req: Request, res: Response) {
 
-        const userId = req.userId;
-        const title = req.body.title;
-        const message = req.body.message;
-        const id = req.params.id;
+        const name = req.body.name;
+        const price = req.body.price;
 
-        if (!message || typeof (message) !== "string") {
+        const id: number = parseInt(req.params.id);
+
+        if (typeof (price) !== "number" || typeof (name) !== "string") {
             res.status(400).json({
                 status: "FAIL",
                 data: undefined,
@@ -113,28 +129,19 @@ export class MenuController {
             res.status(404).json({
                 status: "NOT FOUND",
                 data: undefined,
-                message: "l'article n'existe pas"
-            });
-            return;
-        }
-
-        if (menuExist.user_id !== userId) {
-            res.status(401).json({
-                status: "FAIL",
-                data: undefined,
-                message: "non autorisé"
+                message: "le menu n'existe pas"
             });
             return;
         }
 
         try {
-            const data = await menuService.updateMenu(id, title, message);
 
+            const menuExist = await menuService.updateMenu(id, name, price);
 
-            if (data) {
+            if (menuExist) {
                 res.status(200).json({
                     status: "UPDATED",
-                    data: data,
+                    data: menuExist,
                     message: "Modification effectuée"
                 });
             }
@@ -147,28 +154,18 @@ export class MenuController {
             });
         }
     }
-    /** function deleteArticle => renvoie à la méthode articlesService.getOneArticle + articlesService.deleteArticle */
-    async deleteArticle(req: any, res: any) {
 
-        const id = req.params.id;
-        const userId = req.userId;
+    async deleteMenu(req: Request, res: Response) {
 
-        const menuExist = await menuService.deleteMenu(id);
+        const id: number = parseInt(req.params.id);
+
+        const menuExist = await menuService.getMenuById(id);
 
         if (!menuExist) {
             res.status(404).json({
                 status: "NOT FOUND",
                 data: undefined,
                 message: "le menu n'existe pas",
-            });
-            return;
-        }
-
-        if (menuExist.client_id !== userId) {
-            res.status(401).json({
-                status: "ERREUR",
-                data: null,
-                message: "non autorisé"
             });
             return;
         }

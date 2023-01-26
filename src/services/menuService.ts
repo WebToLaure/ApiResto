@@ -19,7 +19,7 @@ export class MenuService {
         return undefined;
     }
 
-    async getMenus(): Promise< Menu[] | undefined> {
+    async getMenus(): Promise<Menu[] | undefined> {
 
         const menus = await Menu.find();
 
@@ -32,37 +32,48 @@ export class MenuService {
 
     }
 
-    async getMenuByName(name : string, price: number): Promise<Menu | undefined> {
+    async getMenuById(id: number): Promise<Menu | undefined> {
 
-        const menu = await Menu.findOneBy({ name : name, price : price });
+        const menu = await Menu.findBy({ id });
+
+        if (menu != null) {
+
+            return menu [0];
+        }
+
+        return undefined;
+
+    }// renvoie tous les menus
+
+    async updateMenu(id: number, name: string, price: number): Promise<Menu | undefined> {
+
+        const menuUpdated = new Menu();
+        
+        menuUpdated.name = name;
+        menuUpdated.price = price;
+        menuUpdated.id = id;
+
+
+        const menu = await menuUpdated.save();
 
         if (menu) {
 
             return menu;
         }
-
         return undefined;
 
-    }
-
-    async updateMenu(name: string, newName: string) {
+    }// ne fonctionne pas 
 
 
+    async deleteMenu(id: number): Promise<Menu | undefined> {
 
-    }// pas fini
-
-
-    async deleteMenu(id: number): Promise < Menu | undefined > {
-
-        const menu = await Menu.findOneBy({id});
-
-        menu?.remove();
+        const menu = await Menu.findOneBy({ id });
 
         if (menu) {
 
-            return menu;
+            return menu?.remove();
         }
-
         return undefined;
     }
+
 }

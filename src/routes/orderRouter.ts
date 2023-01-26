@@ -24,5 +24,5 @@ router.post('/api/order', async (req, res) => { // creer un objet pour l'utilisa
 
 export {
 
-    router as createOrderRouter
+    router as orderRouter
 }

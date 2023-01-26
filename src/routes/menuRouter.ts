@@ -1,16 +1,21 @@
 import * as express from 'express';
-const router = express.Router();
-import { AppDataSource } from '../module/clientData';
+import { MenuControllers } from '../controllers/menuController';
 
-router.post('/api/menu', async (req, res) => { // creer un objet pour l'utilisateur
-    const {
+export const menuRouter = express.Router();
 
-
-    } = req.body;
+const menusController = new MenuControllers();
 
 
-  
-});
-export {
-    router as createMenuRouter
-}
+
+//Routes
+
+menuRouter.post('/', menusController.CreateMenu);
+
+menuRouter.get('/', menusController.getAllMenus);
+
+menuRouter.get('/:id', menusController.getOneMenu)
+
+menuRouter.put('/:id', menusController.updateMenu)
+
+menuRouter.delete('/:id', menusController.deleteMenu)
+
