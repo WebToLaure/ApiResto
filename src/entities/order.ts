@@ -8,14 +8,12 @@ export class Order extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => Client, (client) => client.order)
+    @ManyToOne(() => Client, (client) => client.orders)
     client: Client
 
     @ManyToOne(() => Menu, (menu) => menu.orders)
-
     menu: Menu
 
     @ManyToOne(() => Restaurant, (restaurant) => restaurant.orders)
-
     restaurant: Restaurant
-} 
+}

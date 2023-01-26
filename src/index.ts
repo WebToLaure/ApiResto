@@ -29,6 +29,18 @@ AppDataSource.initialize().then(async () => {
     // for parsing application/json
     app.use(express.json());
 
+    app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction)
+    {
+        if(err)
+        {
+            console.log(err);
+            res.status(400).send({
+                status: 'FAILED',
+                data: "Bad request"
+            });
+        }
+    });
+
     app.use('/api/menu', menuRouter);
     app.use('/api/order', orderRouter);
     app.use('/api/restaurant', restaurantRouter);

@@ -1,28 +1,11 @@
 import * as express from 'express';
-import { Order } from '../entities/order';
-import { AppDataSource } from '../module/clientData';
-const router = express.Router();
+import { OrderController } from '../controllers/orderController';
+import { authenticateJWT } from '../middleware/auth';
+export const orderRouter = express.Router();
+
+
+const orderController = new OrderController();
 
 
 
-router.post('/api/order', async (req, res) => { // creer un objet pour l'utilisateur
-    const {
-
-        id,
-        create_at
-
-
-    } = req.body;
-
-
-
-
-    });
-
-    
-
-
-export {
-
-    router as orderRouter
-}
+orderRouter.post ('/', authenticateJWT, orderController.addOrder);
