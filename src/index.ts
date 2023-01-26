@@ -5,7 +5,7 @@ import { JwtPayload } from 'jsonwebtoken';
 import { AppDataSource } from './module/clientData';
 import { clientRouter } from './routes/clientRouter';
 import { menuRouter } from './routes/menuRouter';
-//import { restaurantRouter } from './routes/restaurantRouter';
+import { restaurantRouter } from './routes/restaurantRouter';
 import { orderRouter } from './routes/orderRouter';
 
 declare global {
@@ -31,7 +31,7 @@ AppDataSource.initialize().then(async () => {
 
     app.use('/api/menu', menuRouter);
     app.use('/api/order', orderRouter);
-    //app.use('/api/restaurant', restaurantRouter);
+    app.use('/api/restaurant', restaurantRouter);
     app.use('/api/client', clientRouter);
 
 
