@@ -1,20 +1,20 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn,OneToMany } from "typeorm"
+import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
 import { Order } from "./order"
 
 @Entity('menus')
 export class Menu extends BaseEntity {
+
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    name: string
+    name: string;
 
-    @Column({
-        type:'numeric'
-    })
-    price: number
+    @Column()
+    price: number;
 
-    @OneToMany (() => Order, (order) => order.menu)
-    orders : Order[]
+    @OneToMany(() => Order, (order) => order.menu)
+    orders: Order[]
 
-} 
+}
+       

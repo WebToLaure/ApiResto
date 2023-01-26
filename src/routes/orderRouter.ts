@@ -14,17 +14,13 @@ router.post('/api/order', async (req, res) => { // creer un objet pour l'utilisa
 
     } = req.body;
 
-    const order = Order.create({  // faire en sorte que l'objet concorde avec les instances de l'entité (nom database-nom utilisateur)
+
 
 
     });
 
-    await order.save();  //sauvergarde pour database
+    
 
-    return res.json(order);
-
-
-});
 
 export {
 
