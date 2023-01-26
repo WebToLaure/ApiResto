@@ -61,6 +61,16 @@ console.log(restaurant);
 
     }
 
+    async deleteRestaurant(id: number): Promise<Restaurant | undefined> {
+
+        const restaurantDelete = await Restaurant.findOneBy({ id });
+
+        if (restaurantDelete) {
+
+            return restaurantDelete?.remove();
+        }
+        return undefined;
+    }
 
 
 }

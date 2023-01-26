@@ -1,5 +1,6 @@
 import { RestaurantService } from "../services/restaurantService";
 import { Request, Response } from "express";
+import { Restaurant } from "../entities/restaurant";
 
 const restaurantService = new RestaurantService();
 
@@ -9,7 +10,7 @@ export class RestaurantControllers {
 
         const restaurantCity = req.body.city;
 
-        if (typeof (restaurantCity) !== 'string') { 
+        if (typeof (restaurantCity) !== 'string' || restaurantCity.length == 0) { 
 
             res.status(400).json({
                 status: 'FAIL',
@@ -104,17 +105,19 @@ export class RestaurantControllers {
                 data: undefined,
                 message: "Renseignez le champs"
             });
+            return
         }
 
         try {
 
-            if (typeof (city) !== 'string') { 
+            if (typeof (city) !== 'string'|| city.length == 0) { 
 
                 res.status(400).json({
                     status: 'FAIL',
                     data: undefined,
                     message: "Erreur de structure"
                 });
+                return
             }
             
 
@@ -162,4 +165,39 @@ export class RestaurantControllers {
     };
 
 
+    async deleteRestaurant(req: Request, res: Response) {
+
+        const id: number = parseInt(req.params.id);
+
+        const menuExist = await restaurantService.getRestaurantById(id);
+
+        if (!menuExist) {
+            res.status(404).json({
+                status: "NOT FOUND",
+                data: undefined,
+                message: "Le restaurant n'existe pas",
+            });
+            return;
+        }
+
+        try {
+            const data = await restaurantService.deleteRestaurant(id);
+
+            if (data) {
+                res.status(200).json({
+                    status: "OK",
+                    data: data,
+                    message: "Restaurant supprimé"
+                });
+            };
+
+        }
+        catch (err) {
+            res.status(500).json({
+                status: "FAIL",
+                data: undefined,
+                message: "erreur serveur",
+            });
+        }
+    }
 }

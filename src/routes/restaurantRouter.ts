@@ -9,4 +9,6 @@ restaurantRouter.post('/register', restaurantControllers.createRestaurant);
 restaurantRouter.get('/', restaurantControllers.getAllRestaurant);
 restaurantRouter.get('/:id', restaurantControllers.getRestaurantById);
 restaurantRouter.put('/:id', restaurantControllers.updateRestaurant);
+restaurantRouter.delete('/:id', restaurantControllers.deleteRestaurant);
+
 
