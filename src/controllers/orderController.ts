@@ -159,7 +159,7 @@ export class OrderController {
                 return;
             }
 
-            const data = await orderService.updateOrder(clientId, restaurantId, menuId);
+            const data = await orderService.updateOrder(orderId, menuId, restaurantId);
 
             if (data) {
 
@@ -203,7 +203,7 @@ export class OrderController {
             });
             return;
         }
-        else if (orderExist.client.id !== clientId) {
+        else if (!clientId) {
             res.status(401).json({
                 status: "FAIL",
                 data: null,

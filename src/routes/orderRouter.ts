@@ -5,10 +5,7 @@ import { Admin } from '../middleware/admin';
 import { OrderService } from '../services/orderService';
 export const orderRouter = express.Router();
 
-
 const orderController = new OrderController();
-
-
 
 orderRouter.post ('/', authenticateJWT, orderController.addOrder);
 orderRouter.get ('/', authenticateJWT, orderController.getOrders);
