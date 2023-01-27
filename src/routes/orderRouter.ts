@@ -1,28 +1,17 @@
 import * as express from 'express';
-import { Order } from '../entities/order';
-import { AppDataSource } from '../module/clientData';
-const router = express.Router();
+import { OrderController } from '../controllers/orderController';
+import { authenticateJWT } from '../middleware/auth';
+import { Admin } from '../middleware/admin';
+import { OrderService } from '../services/orderService';
+export const orderRouter = express.Router();
+
+
+const orderController = new OrderController();
 
 
 
-router.post('/api/order', async (req, res) => { // creer un objet pour l'utilisateur
-    const {
-
-        id,
-        create_at
-
-
-    } = req.body;
-
-
-
-
-    });
-
-    
-
-
-export {
-
-    router as orderRouter
-}
+orderRouter.post ('/', authenticateJWT, orderController.addOrder);
+orderRouter.get ('/', authenticateJWT, orderController.getOrders);
+orderRouter.get ('/:id', authenticateJWT, orderController.getOrderById);
+orderRouter.put('/:id', authenticateJWT, orderController.updateOrder);
+orderRouter.delete('/:id', authenticateJWT,/* Admin,*/ orderController.deleteOrder);

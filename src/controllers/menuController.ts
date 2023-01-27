@@ -7,7 +7,6 @@ const menuService = new MenuService();
 
 export class MenuControllers {
     async CreateMenu(req: Request, res: Response) {
-
         const name = req.body.name;
         const price = req.body.price;
 
@@ -18,6 +17,7 @@ export class MenuControllers {
                 data: undefined,
                 message: "veuillez renseigner tous les champs"
             });
+            return;
         }
 
         if (price == null) {
@@ -26,6 +26,7 @@ export class MenuControllers {
                 data: undefined,
                 message: "veuillez renseigner tous les champs"
             });
+            return;
         }
 
         if (typeof name !== "string" || typeof price != "number") {

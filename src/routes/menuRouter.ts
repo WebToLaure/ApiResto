@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { MenuControllers } from '../controllers/menuController';
+import { Admin } from '../middleware/admin';
 
 export const menuRouter = express.Router();
 
@@ -9,7 +10,7 @@ const menusController = new MenuControllers();
 
 //Routes
 
-menuRouter.post('/', menusController.CreateMenu);
+menuRouter.post('/', Admin, menusController.CreateMenu);
 
 menuRouter.get('/', menusController.getAllMenus);
 
