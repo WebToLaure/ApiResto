@@ -7,7 +7,6 @@ const menuService = new MenuService();
 
 export class MenuControllers {
     async CreateMenu(req: Request, res: Response) {
- 
         const name = req.body.name;
         const price = req.body.price;
 

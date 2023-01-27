@@ -5,7 +5,6 @@ export class MenuService {
     async addMenu(name: string, price: number): Promise<Menu | undefined> {
 
         const newMenu = new Menu();
-
         newMenu.name = name;
         newMenu.price = price;
 
@@ -43,7 +42,7 @@ export class MenuService {
 
         return undefined;
 
-    }// renvoie tous les menus
+    }// renvoie le menu par son Id
 
     async updateMenu(id: number, name: string, price: number): Promise<Menu | undefined> {
 
@@ -62,7 +61,7 @@ export class MenuService {
         }
         return undefined;
 
-    }// ne fonctionne pas 
+    }
 
 
     async deleteMenu(id: number): Promise<Menu | undefined> {
