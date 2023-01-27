@@ -49,7 +49,7 @@ export class OrderService {
     }
 
 
-    async getOrderById(id: number): Promise<Order | null> {
+    async getOrderById(id: number): Promise<Order | undefined> {
 
         const order = await Order.findBy({ id });
 
@@ -57,13 +57,39 @@ export class OrderService {
 
             return order[0];
         }
-        return null;
+        return undefined;
 
     }
 
-    async updateOrder() {
+    async updateOrder(clientId: number, menuId: number, restaurantId: number): Promise<Order | undefined> {
+        
 
-    }
+        const newOrder = new Order();
+
+        const client = await Client.findOneBy({ id: clientId });
+        const menu = await Menu.findOneBy({ id: menuId });
+        const restaurant = await Restaurant.findOneBy({ id: restaurantId });
+
+        console.log(client, menu, restaurant);
+        
+
+
+        if (client && menu && restaurant) {
+
+            newOrder.client = client;
+            newOrder.menu = menu;
+            newOrder.restaurant = restaurant;
+
+            await newOrder.save();
+
+            return newOrder;
+
+        }
+
+        return undefined;
+    
+
+}
 
     async deleteOrder(id: number): Promise<Order | undefined> {
 

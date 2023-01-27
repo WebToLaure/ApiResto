@@ -20,7 +20,6 @@ export class RestaurantService {
     async getAllRestaurant(): Promise<Restaurant[] | undefined> {
 
         const restaurant = await Restaurant.findBy({});
-console.log(restaurant);
 
         if (restaurant != null) {
 
