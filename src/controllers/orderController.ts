@@ -120,7 +120,7 @@ export class OrderController {
 
     async deleteOrder(req: Request, res: Response) {
 
-        const clientId = req.body.client;
+        const clientId = req.body.client.clientId;
         const id: number = parseInt(req.params.id);
 
         const orderExist = await orderService.getOrderById(id);
@@ -133,7 +133,7 @@ export class OrderController {
             });
             return;
         }
-        else if (orderExist.client.id !== clientId) {
+        else if (!clientId) {
             res.status(401).json({
                 status: "FAIL",
                 data: null,
