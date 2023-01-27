@@ -14,4 +14,4 @@ orderRouter.post ('/', authenticateJWT, orderController.addOrder);
 orderRouter.get ('/', authenticateJWT, orderController.getOrders);
 orderRouter.get ('/:id', authenticateJWT, orderController.getOrderById);
 orderRouter.put('/:id', authenticateJWT, orderController.updateOrder);
-orderRouter.delete('/:id', authenticateJWT,/* Admin,*/ orderController.deleteOrder);
+orderRouter.delete('/:id', authenticateJWT,/* isAdmin,*/ orderController.deleteOrder);

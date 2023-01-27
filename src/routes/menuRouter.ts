@@ -10,7 +10,7 @@ const menusController = new MenuControllers();
 
 //Routes
 
-menuRouter.post('/',/* Admin,*/menusController.CreateMenu);
+menuRouter.post('/',/* isAdmin,*/menusController.CreateMenu);
 
 menuRouter.get('/', menusController.getAllMenus);
 
