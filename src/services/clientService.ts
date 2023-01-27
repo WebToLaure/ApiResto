@@ -8,6 +8,7 @@ export class ClientService {
         const client = new Client()
         client.surname = surname
         client.password = hash
+       
 
         await client.save()
 

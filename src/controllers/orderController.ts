@@ -190,7 +190,7 @@ export class OrderController {
 
     async deleteOrder(req: Request, res: Response) {
 
-        const clientId = req.body.client;
+        const clientId = req.body.client.clientId;
         const id: number = parseInt(req.params.id);
 
         const orderExist = await orderService.getOrderById(id);

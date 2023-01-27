@@ -17,4 +17,3 @@ export class Menu extends BaseEntity {
     orders: Order[]
 
 }
-       
