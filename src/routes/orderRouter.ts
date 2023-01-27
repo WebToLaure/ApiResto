@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { OrderController } from '../controllers/orderController';
 import { authenticateJWT } from '../middleware/auth';
-import { Admin } from '../middleware/admin';
+import { isAdmin } from '../middleware/isAdmin';
 import { OrderService } from '../services/orderService';
 export const orderRouter = express.Router();
 

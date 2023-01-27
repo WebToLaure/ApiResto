@@ -20,7 +20,7 @@ export class MenuControllers {
             return;
         }
 
-        if (price == null) {
+        if (price == null || price <=0) {
             res.status(400).json({
                 status: "FAIL",
                 data: undefined,

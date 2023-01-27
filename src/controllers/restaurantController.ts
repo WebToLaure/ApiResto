@@ -1,6 +1,6 @@
 import { RestaurantService } from "../services/restaurantService";
 import { Request, Response } from "express";
-import { Restaurant } from "../entities/restaurant";
+
 
 const restaurantService = new RestaurantService();
 
@@ -19,6 +19,7 @@ export class RestaurantControllers {
             });
             return
         }        
+
 
         try {
 

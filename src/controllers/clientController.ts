@@ -4,6 +4,7 @@ import  {Request, Response}  from "express";
 import * as jwt from 'jsonwebtoken';
 import { accessTokenSecret } from "../middleware/auth";
 
+
 const clientService = new ClientService();
 
 
@@ -12,6 +13,7 @@ export class ClientControllers {
 
         const surname = req.body.surname;
         const password = req.body.password;
+       
 
         bcrypt.hash(password, 10, async function (err : any, hash : string) {
 
@@ -43,7 +45,8 @@ export class ClientControllers {
 
         try {
             const client = await clientService.loginClient(surname);
-
+            console.log(client);
+            
             if (!client) {  // si l'identifiant est incorrect
                 res.status(404).json({
                     status: "fail",
@@ -55,7 +58,7 @@ export class ClientControllers {
             }
             bcrypt.compare(password, client.password, (err, result) => {
                 
-                const accessToken = jwt.sign({ clientId: client.id }, accessTokenSecret);
+                const accessToken = jwt.sign({ clientId: client.id, admin:client.admin }, accessTokenSecret);
 
                 if (result === true) {
                     res.status(200).json({
