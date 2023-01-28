@@ -44,7 +44,7 @@ export class OrderController {
             else {
                 res.status(404).json({
                     status: "FAIL",
-                    message: "La commande est introuvable"
+                    message: "La commande est impossible"
                 })
 
             }
@@ -54,7 +54,7 @@ export class OrderController {
             res.status(500).json({
                 status: 'Fail',
                 data: undefined,
-                message: "Erreur de status"
+                message: "Internal Server Error"
             });
         }
 
@@ -118,11 +118,11 @@ export class OrderController {
     async updateOrder(req: Request, res: Response) {
 
         const clientId = req.body.clientId;
-        const orderId : number = parseInt(req.params.id)
+        const orderId: number = parseInt(req.params.id)
         const restaurantId: number = parseInt(req.body.restaurantId);
         const menuId: number = parseInt(req.body.menuId);
 
-        if (!orderId) { 
+        if (!orderId) {
 
             res.status(400).json({
                 status: 'FAIL',
@@ -134,16 +134,16 @@ export class OrderController {
 
         try {
 
-            if (typeof (orderId) !== 'number') { 
+            if (typeof (orderId) !== 'number') {
 
                 res.status(400).json({
                     status: 'FAIL',
                     data: undefined,
-                    message: "Erreur de structure"
+                    message: "Demande incorrecte"
                 });
                 return
             }
-            
+
 
             // check Order
             const isOrderExist = await orderService.getOrderById(orderId);
@@ -183,7 +183,7 @@ export class OrderController {
             res.status(500).json({
                 status: "FAIL",
                 data: undefined,
-                message: "erreur serveur",
+                message: "Internal Server Error",
             });
         }
     };
@@ -204,7 +204,7 @@ export class OrderController {
             return;
         }
         else if (!clientId) {
-            res.status(401).json({
+            res.status(403).json({
                 status: "FAIL",
                 data: null,
                 message: "Non autorisé"
@@ -232,6 +232,5 @@ export class OrderController {
         }
 
     }
-
 
 }

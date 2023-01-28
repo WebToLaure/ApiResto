@@ -16,7 +16,7 @@ export class MenuService {
         }
 
         return undefined;
-    }
+    };
 
     async getMenus(): Promise<Menu[] | undefined> {
 
@@ -29,7 +29,7 @@ export class MenuService {
 
         return undefined;
 
-    }
+    };
 
     async getMenuById(id: number): Promise<Menu | undefined> {
 
@@ -37,17 +37,17 @@ export class MenuService {
 
         if (menu != null) {
 
-            return menu [0];
+            return menu[0];
         }
 
         return undefined;
 
-    }// renvoie le menu par son Id
+    };// renvoie le menu par son Id
 
     async updateMenu(id: number, name: string, price: number): Promise<Menu | undefined> {
 
         const menuUpdated = new Menu();
-        
+
         menuUpdated.name = name;
         menuUpdated.price = price;
         menuUpdated.id = id;
@@ -61,8 +61,7 @@ export class MenuService {
         }
         return undefined;
 
-    }
-
+    };
 
     async deleteMenu(id: number): Promise<Menu | undefined> {
 
@@ -73,6 +72,6 @@ export class MenuService {
             return menu?.remove();
         }
         return undefined;
-    }
+    };
 
 }

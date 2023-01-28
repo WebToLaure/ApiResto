@@ -15,7 +15,7 @@ export class Client extends BaseEntity {
 
     @Column()
     password: string;
-    
+
     @Column({
         default: false
     })

@@ -5,7 +5,7 @@ import { Client } from '../entities/client';
 import { Order } from '../entities/order';
 import { Menu } from '../entities/menu';
 import { Restaurant } from '../entities/restaurant';
-dotenv.config ({ path: '.env' })
+dotenv.config({ path: '.env' })
 
 export const AppDataSource = new DataSource({
     type: "postgres",

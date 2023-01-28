@@ -1,11 +1,10 @@
 import * as express from 'express';
-import * as jwt  from 'jsonwebtoken';
-import { isAdmin } from './isAdmin';
+import * as jwt from 'jsonwebtoken';
 
 export const accessTokenSecret = 'youraccesstokensecret';
 
 
-export function authenticateJWT (req : express.Request, res : express.Response, next : express.NextFunction) {
+export function authenticateJWT(req: express.Request, res: express.Response, next: express.NextFunction) {
 
     const authHeader = req.headers.authorization;
 
@@ -16,20 +15,22 @@ export function authenticateJWT (req : express.Request, res : express.Response, 
             if (err) {
 
                 return res.sendStatus(401);
+                
+               return  res.sendStatus(401);
+              
             }
 
             req.body.client = token;
-            req.body.admin = isAdmin;
-
 
             next();
+
         });
     } else {
         res.status(401).json({
             status: "FAIL",
             data: undefined,
             message: "Veuillez vous authentifier"
-            });
+        });
     }
 
 };
