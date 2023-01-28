@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as jwt  from 'jsonwebtoken';
+import { isAdmin } from './isAdmin';
 
 export const accessTokenSecret = 'youraccesstokensecret';
 
@@ -14,15 +15,17 @@ export function authenticateJWT (req : express.Request, res : express.Response, 
         jwt.verify(token, accessTokenSecret, (err, token) => {
             if (err) {
 
-                return res.sendStatus(403);
+                return res.sendStatus(401);
             }
 
             req.body.client = token;
+            req.body.admin = isAdmin;
+
 
             next();
         });
     } else {
-        res.status(403).json({
+        res.status(401).json({
             status: "FAIL",
             data: undefined,
             message: "Veuillez vous authentifier"

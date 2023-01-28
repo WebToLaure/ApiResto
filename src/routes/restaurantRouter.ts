@@ -6,7 +6,7 @@ const restaurantControllers = new RestaurantControllers()
 
 export const restaurantRouter = express.Router();
 
-restaurantRouter.post('/register', authenticateJWT, restaurantControllers.createRestaurant);
+restaurantRouter.post('/register',authenticateJWT, isAdmin, restaurantControllers.createRestaurant);
 restaurantRouter.get('/', restaurantControllers.getAllRestaurant);
 restaurantRouter.get('/:id', restaurantControllers.getRestaurantById);
 restaurantRouter.put('/:id', restaurantControllers.updateRestaurant);

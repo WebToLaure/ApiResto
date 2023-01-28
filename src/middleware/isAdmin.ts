@@ -1,15 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 
 
+export const isAdmin = (req: Request,res: Response,next: NextFunction) => {
 
 
-export function isAdmin (req: Request,res: Response,next: NextFunction) {
-
-console.log(req.body.client);
-
-const Administrator = req.body.client;
-
-if (Administrator) {
+if (req.body.admin) {
 
     next();
 
@@ -20,7 +15,5 @@ if (Administrator) {
         message: "Seul l'administrateur est autorisé "
     });
 }
-
-
 
 }
