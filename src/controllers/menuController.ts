@@ -9,6 +9,7 @@ export class MenuControllers {
     async CreateMenu(req: Request, res: Response) {
         const name = req.body.name;
         const price = req.body.price;
+        const admin = req.body.admin;
 
 
         if (!name) {

@@ -16,5 +16,5 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [Client, Order, Menu, Restaurant],
     synchronize: true, // A PASSER A TRUE POUR LA SYNCHRO AVEC LA BDD
-    logging: false,
+    logging: true,
 })

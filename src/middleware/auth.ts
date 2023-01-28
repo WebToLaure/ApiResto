@@ -13,14 +13,9 @@ export function authenticateJWT(req: express.Request, res: express.Response, nex
 
         jwt.verify(token, accessTokenSecret, (err, token) => {
             if (err) {
-
-                res.sendStatus(401).json({
-                    status: "FAIL",
-                    data: undefined,
-                    message: "Veuillez vous authentifier"
-                });
-                return;
-
+                
+               return  res.sendStatus(401);
+              
             }
 
             req.body.client = token;

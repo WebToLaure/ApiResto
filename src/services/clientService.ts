@@ -29,11 +29,6 @@ export class ClientService {
 
     };
 
-
-   /*  async loginAdmin (username: string, admin: boolean): Promise <Client | undefined> {
-
-
-    } */
 };
 
 
