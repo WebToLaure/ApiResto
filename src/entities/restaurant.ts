@@ -9,8 +9,8 @@ export class Restaurant extends BaseEntity {
     @Column()
     city: string
 
-    @OneToMany (()=> Order, (order)=> order.restaurant)
+    @OneToMany(() => Order, (order) => order.restaurant)
 
-    orders: Order []
+    orders: Order[]
 
 }

@@ -10,7 +10,12 @@ export class Menu extends BaseEntity {
     @Column()
     name: string;
 
-    @Column()
+    @Column({
+        type: "decimal",
+        precision: 5,
+        scale: 2,
+        default: 0
+    })
     price: number;
 
     @OneToMany(() => Order, (order) => order.menu)

@@ -44,7 +44,7 @@ export class OrderController {
             else {
                 res.status(404).json({
                     status: "FAIL",
-                    message: "La commande est introuvable"
+                    message: "La commande est impossible"
                 })
 
             }
@@ -54,7 +54,7 @@ export class OrderController {
             res.status(500).json({
                 status: 'Fail',
                 data: undefined,
-                message: "Erreur de status"
+                message: "Internal Server Error"
             });
         }
 
@@ -115,8 +115,78 @@ export class OrderController {
 
     }
 
-    async updateOrder() { }
+    async updateOrder(req: Request, res: Response) {
 
+        const clientId = req.body.clientId;
+        const orderId: number = parseInt(req.params.id)
+        const restaurantId: number = parseInt(req.body.restaurantId);
+        const menuId: number = parseInt(req.body.menuId);
+
+        if (!orderId) {
+
+            res.status(400).json({
+                status: 'FAIL',
+                data: undefined,
+                message: "Renseignez le champs"
+            });
+            return
+        }
+
+        try {
+
+            if (typeof (orderId) !== 'number') {
+
+                res.status(400).json({
+                    status: 'FAIL',
+                    data: undefined,
+                    message: "Demande incorrecte"
+                });
+                return
+            }
+
+
+            // check Order
+            const isOrderExist = await orderService.getOrderById(orderId);
+
+            if (isOrderExist === undefined) {
+
+                res.status(404).json({
+                    status: 'FAIL',
+                    data: undefined,
+                    message: "Le commande n'existe pas"
+                });
+
+                return;
+            }
+
+            const data = await orderService.updateOrder(orderId, menuId, restaurantId);
+
+            if (data) {
+
+                res.status(200).json({
+                    status: 'OK',
+                    data: data,
+                    message: "Modification ok"
+                })
+            }
+            else {
+
+                res.status(404).json({
+                    status: 'FAIL',
+                    data: null,
+                    message: "Erreur"
+                })
+            }
+
+        } catch (error) {
+
+            res.status(500).json({
+                status: "FAIL",
+                data: undefined,
+                message: "Internal Server Error",
+            });
+        }
+    };
 
     async deleteOrder(req: Request, res: Response) {
 
@@ -134,7 +204,7 @@ export class OrderController {
             return;
         }
         else if (!clientId) {
-            res.status(401).json({
+            res.status(403).json({
                 status: "FAIL",
                 data: null,
                 message: "Non autorisé"
@@ -162,11 +232,5 @@ export class OrderController {
         }
 
     }
-
-
-
-
-
-
 
 }

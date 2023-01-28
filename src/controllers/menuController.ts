@@ -20,11 +20,20 @@ export class MenuControllers {
             return;
         }
 
-        if (price == null || price <=0) {
+        if (price == null) {
             res.status(400).json({
                 status: "FAIL",
                 data: undefined,
                 message: "veuillez renseigner tous les champs"
+            });
+            return;
+        }
+
+        if (price <= 0) {
+            res.status(400).json({
+                status: "FAIL",
+                data: undefined,
+                message: "Montant non autorisé"
             });
             return;
         }
@@ -96,7 +105,7 @@ export class MenuControllers {
                 res.status(404).json({
                     status: "NOT FOUND",
                     data: undefined,
-                    message: "le menu n'existe pas",
+                    message: "le menu n'existe pas ou plus",
                 });
             }
 
@@ -166,7 +175,7 @@ export class MenuControllers {
             res.status(404).json({
                 status: "NOT FOUND",
                 data: undefined,
-                message: "le menu n'existe pas",
+                message: "le menu n'existe pas ou plus",
             });
             return;
         }

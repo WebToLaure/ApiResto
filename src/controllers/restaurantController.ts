@@ -1,16 +1,15 @@
 import { RestaurantService } from "../services/restaurantService";
 import { Request, Response } from "express";
 
-
 const restaurantService = new RestaurantService();
 
 export class RestaurantControllers {
 
     async createRestaurant(req: Request, res: Response) {
-
+        
         const restaurantCity = req.body.city;
 
-        if (typeof (restaurantCity) !== 'string' || restaurantCity.length == 0) { 
+        if (typeof (restaurantCity) !== 'string' || restaurantCity.length == 0) {
 
             res.status(400).json({
                 status: 'FAIL',
@@ -18,8 +17,7 @@ export class RestaurantControllers {
                 message: "Erreur de structure"
             });
             return
-        }        
-
+        }
 
         try {
 
@@ -37,7 +35,7 @@ export class RestaurantControllers {
             res.status(500).json({
                 status: 'Fail',
                 data: undefined,
-                message: "Erreur de status"
+                message: "Erreur de statut"
             });
         }
     };
@@ -47,11 +45,11 @@ export class RestaurantControllers {
         try {
             const data = await restaurantService.getAllRestaurant();
 
-                res.status(200).json({
-                    status: "OK",
-                    data: data,
-                    message: "Voici la liste des restaurants",
-                });
+            res.status(200).json({
+                status: "OK",
+                data: data,
+                message: "Voici la liste des restaurants",
+            });
 
         } catch (err) {
 
@@ -65,7 +63,7 @@ export class RestaurantControllers {
 
     async getRestaurantById(req: Request, res: Response) {
 
-        const id : number = parseInt(req.params.id);
+        const id: number = parseInt(req.params.id);
 
         try {
             const dataRestaurant = await restaurantService.getRestaurantById(id);
@@ -96,10 +94,10 @@ export class RestaurantControllers {
 
     async updateRestaurant(req: Request, res: Response) {
 
-        const id : number = parseInt(req.params.id)
-        const city : string = req.body.city
+        const id: number = parseInt(req.params.id)
+        const city: string = req.body.city
 
-        if (!city) { 
+        if (!city) {
 
             res.status(400).json({
                 status: 'FAIL',
@@ -111,7 +109,7 @@ export class RestaurantControllers {
 
         try {
 
-            if (typeof (city) !== 'string'|| city.length == 0) { 
+            if (typeof (city) !== 'string' || city.length == 0) {
 
                 res.status(400).json({
                     status: 'FAIL',
@@ -120,7 +118,7 @@ export class RestaurantControllers {
                 });
                 return
             }
-            
+
 
             // check Restaurant
             const isRestaurantExist = await restaurantService.getRestaurantById(id);
@@ -164,7 +162,6 @@ export class RestaurantControllers {
             });
         }
     };
-
 
     async deleteRestaurant(req: Request, res: Response) {
 

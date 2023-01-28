@@ -1,26 +1,26 @@
 import { Request, Response, NextFunction } from "express";
+import { accessTokenSecret } from "../middleware/auth";
+import * as jwt from 'jsonwebtoken';
 
 
 
 
-export function isAdmin (req: Request,res: Response,next: NextFunction) {
+export const isAdmin = (req: Request, res: Response, next: () => void ) => {
 
-console.log(req.body.client);
+    const admin = req.body.admin;
 
-const Administrator = req.body.client;
+    if (!admin) {
 
-if (Administrator) {
+        res.status(403).json({
+
+            status: "FAIL",
+            message: "Seul l'administrateur est autorisé "
+           
+        });
+
+        return;
+    }
 
     next();
 
-} else {
-
-    res.status(401).json({
-        status: "FAIL",
-        message: "Seul l'administrateur est autorisé "
-    });
-}
-
-
-
-}
+};

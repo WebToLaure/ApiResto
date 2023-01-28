@@ -20,7 +20,6 @@ export class RestaurantService {
     async getAllRestaurant(): Promise<Restaurant[] | undefined> {
 
         const restaurant = await Restaurant.findBy({});
-console.log(restaurant);
 
         if (restaurant != null) {
 
@@ -31,9 +30,9 @@ console.log(restaurant);
 
     }
 
-    async getRestaurantById(id : number): Promise<Restaurant | undefined> {
+    async getRestaurantById(id: number): Promise<Restaurant | undefined> {
 
-        const restaurantByID = await Restaurant.findBy({id});
+        const restaurantByID = await Restaurant.findBy({ id });
 
         if (restaurantByID != null) {
 
@@ -44,12 +43,12 @@ console.log(restaurant);
 
     }
 
-    async updateRestaurant(id : number, city : string) : Promise<Restaurant | undefined> {
+    async updateRestaurant(id: number, city: string): Promise<Restaurant | undefined> {
 
         const updateRestaurant = new Restaurant();
         updateRestaurant.id = id;
         updateRestaurant.city = city;
-        
+
         const restaurantUpdate = await updateRestaurant.save();
 
         if (restaurantUpdate) {
@@ -71,6 +70,5 @@ console.log(restaurant);
         }
         return undefined;
     }
-
 
 }
