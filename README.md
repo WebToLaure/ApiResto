@@ -52,28 +52,38 @@ git pull
 
 
 
-                                                    #### PROJET API RESTO
-                                              ***Développement prototype du Backend*** 
-                                                           **API** 
+                                                        PROJET API RESTO
+                                                    
+                                                    
+                                                 Développement prototype du Backend 
+                                              
+                                              
+                                                             API 
 
 
-***Choississez votre menu préféré chez Mc BOB, parmi les menus Mc Bobby HEwings (Chicken directly imported from Texas), Mc Bob Sinclarks, Mc Bob Tasty ( hot spicy ) ou même Mc Bob léponge (pour les végétariens), sur cette API REST O qui vous donne la possiblité de sélectionner votre restaurant préféré, votre menu préféré, en fonction de votre budget, et de passez commande.***
+---
+> Choississez votre menu préféré chez Mc BOB, parmi les menus Mc Bobby HEwings (Chicken directly imported from Texas), Mc Bob Sinclarks, Mc Bob Tasty ( hot spicy ) ou même Mc Bob léponge (pour les végétariens), sur cette API REST O qui vous donne la possiblité de sélectionner votre restaurant préféré, votre menu préféré, en fonction de votre budget, et de passer commande.
 
 
 
-```
 
-API développée en **Typescript**,sur la base de quatre TABLES: Client, Restaurant, Menu, et Order avec **TypeORM**.
 
-* Création de **4 DOSSIERS** afférents à ces tables: **entities, services, controllers, et routes.**
+- API développée en **Typescript**, sur la base de quatre TABLES: Client, Restaurant, Menu, et Order avec **TypeORM**.
 
-* Chaque table possède ces dossiers un **FICHIER entity, service, controller,et route.** 
+- Création de **4 DOSSIERS** : **entities, services, controllers, et routes:**
 
-* Création d'un **dossier module** dans lequel se trouve le **fichier clienData**.
+- Entities: création des tables de la BDDR avec TypeORM
+- Services: requêtes auprès de la base de données
+- Controllers: logique de fonctionnement
+- Routes: les routes 
 
-* **Dossier middleware** pour les fichiers liés aux vérifications de l'intégrité des données à l'aide d'une signature numérique.
+- Chaque dossier possède un **FICHIER client, restaurant, menu et order.** 
 
-```
+- Création d'un **dossier module** dans lequel se trouve le **fichier clientData**.
+
+- Dossier middleware** pour les fichiers liés aux vérifications de l'intégrité des données à l'aide d'une signature numérique.
+
+
 
 ##### ROUTES
 
@@ -82,30 +92,29 @@ Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/down
  * Serveur : http://localhost:8080/api/
 
 
-|----------------------------------------------------------------------------------------------------------------------|
+
 |  Verbe HTTP  |          Endpoint           |           Actions                   |  :warning:GET BY ID:sparkler:     |
-|              |                             |                                     |                                   |
-|----------------------------------------------------------------------------------------------------------------------|          
-|  GET         |     /restaurant/    (:id)   |    Lister les menus                 | (Ajout `:id` pour lister par id)  | 
-|  GET         |     /order/         (:id)   |    Lister les commandes             | (Ajout `:id` pour lister par id)  |
-|  GET         |     /menu/          (:id)   |    Lister les restaurants           | (Ajout `:id` pour lister par id)  |
-|----------------------------------------------------------------------------------------------------------------------|
+|--------------|-----------------------------|-------------------------------------|-----------------------------------|          
+|  GET         |     /restaurant/    (:id)   |    Liste les menus                  | (Ajout `:id` pour lister par id)  | 
+|  GET         |     /order/         (:id)   |    Liste les commandes              | (Ajout `:id` pour lister par id)  |
+|  GET         |     /menu/          (:id)   |    Liste les restaurants            | (Ajout `:id` pour lister par id)  |
+|--------------|-----------------------------|-------------------------------------|-----------------------------------|
 |  POST        |     /client/register        |    Enregistrement nouveau client    |                                   | 
 |  POST        |     /client/login           |    Authentification client          |                                   |
 |  POST        |     /restaurant/register    |    Création restaurant              |                                   |
 |  POST        |     /menu                   |    Création menu                    |                                   |
 |  POST        |     /order                  |    Création d'une commande          |                                   |
-|--------------|-------------------------------------------------------------------------------------------------------|
-|              |                                                                   |                                   |
-|  PUT         |     /restaurant/:id         |    Modifier la commande par l'id    |                                   |
-|  PUT         |     /menu/:id               |    Modifier la commande par l'id    |                                   |
-|  PUT         |     /order/:id              |    Modifier la commande par l'id    |                                   |
-|--------------|-------------------------------------------------------------------------------------------------------|
-|              |                                                                   |                                   |
+|--------------|-----------------------------|-------------------------------------|-----------------------------------|
+|              |                             |                                     |                                   |
+|  PUT         |     /restaurant/:id         |    Modifie la commande par l'id     |                                   |
+|  PUT         |     /menu/:id               |    Modifie la commande par l'id     |                                   |
+|  PUT         |     /order/:id              |    Modifie la commande par l'id     |                                   |
+|--------------|-----------------------------|-------------------------------------|-----------------------------------|
+|              |                             |                                     |                                   |
 |  DELETE      |     /restaurant/:id         |    Annule le restaurant par l'id    |                                   |
 |  DELETE      |     /menu/:id               |    Annule le menu par l'id          |                                   |
 |  DELETE      |     /order/:id              |    Annule la commande par l'id      |                                   |
-|----------------------------------------------------------------------------------------------------------------------|
+|--------------|-----------------------------|-------------------------------------|-----------------------------------|
 
 ##### Insertion dans Body pour accès requête:
 
