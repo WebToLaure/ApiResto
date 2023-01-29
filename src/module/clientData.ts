@@ -6,8 +6,15 @@ import { Order } from '../entities/order';
 import { Menu } from '../entities/menu';
 import { Restaurant } from '../entities/restaurant';
 
- dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env' })
 
+/**
+ * @constant AppDataSource 
+ * 
+ * Une class permettant :
+ * * De spécifier les données d'accessibilités à notre base de donnée.
+ * * De protéger les données sensibles grâce à dotenv et son fichier .env qui stock les données non dissumulées.
+ */
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: process.env.DB_HOST,

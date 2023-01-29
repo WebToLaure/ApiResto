@@ -2,16 +2,28 @@ import { Request, Response } from "express";
 import { ClientService } from "../services/clientService";
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
-import * as dotenv from 'dotenv';
-import { Client } from "../entities/client";
-import { accessTokenSecret} from "../middleware/auth";
-import { Index } from "typeorm";
-
+import { accessTokenSecret } from "../middleware/auth";
 
 const clientService = new ClientService();
 
-
+/**@class ClientControllers
+ * 
+ * Une class permettant :
+ * * De réunir plusieurs méthodes liées à l'accessibilité du client.
+ * * De contrôler les informations entrantes, de les vérifier avant de les envoyer en base de données, suivant un protocole précis et renseigné.
+ * * Celle-ci est dédiée uniquement à la création de comptes et au logging.
+ */
 export class ClientControllers {
+
+    /** 
+     * @method createClient :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lors de la création d'un compte client.
+     * * Vérifier et imposer que les contraintes soient bien respectées (longueur de caractères etc ...)
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Crypter le password grâce au hash/bcrypt lors de la création du compte client.
+     */
     async createClient(req: Request, res: Response) {
 
         const surname: string = req.body.surname;
@@ -40,8 +52,6 @@ export class ClientControllers {
             return;
         }
 
-
-
         bcrypt.hash(password, 10, async function (err: any, hash: string) {
 
             try {
@@ -67,10 +77,20 @@ export class ClientControllers {
 
     }
 
+
+    /** 
+     * @method loginClient :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lorsque le client les saisies.
+     * * Vérifier que les données soient les bonnes avec celles stockées dans la BDD.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Comparer le token.
+     */
     async loginClient(req: Request, res: Response) {
-        
-        const surname :string = req.body.surname;
-        const password:string = req.body.password;
+
+        const surname: string = req.body.surname;
+        const password: string = req.body.password;
 
 
         try {
