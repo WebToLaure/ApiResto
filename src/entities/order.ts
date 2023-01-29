@@ -17,12 +17,12 @@ export class Order extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => Client, (client) => client.orders)
+    @ManyToOne(() => Client, (client) => client.orders,{onDelete:'CASCADE'})
     client: Client
 
-    @ManyToOne(() => Menu, (menu) => menu.orders)
+    @ManyToOne(() => Menu, (menu) => menu.orders,{onDelete:'CASCADE'})
     menu: Menu
 
-    @ManyToOne(() => Restaurant, (restaurant) => restaurant.orders)
+    @ManyToOne(() => Restaurant, (restaurant) => restaurant.orders,{onDelete:'CASCADE'})
     restaurant: Restaurant
 }

@@ -107,7 +107,7 @@ export class ClientControllers {
             }
             bcrypt.compare(password, client.password, (err, result) => {
 
-                const accessToken = jwt.sign({ clientId: client.id, admin: client.admin }, accessTokenSecret);
+                const accessToken = jwt.sign({ clientId: client.id }, accessTokenSecret);
 
                 if (result === true) {
                     res.status(200).json({

@@ -5,7 +5,8 @@ import { Client } from '../entities/client';
 import { Order } from '../entities/order';
 import { Menu } from '../entities/menu';
 import { Restaurant } from '../entities/restaurant';
-dotenv.config({ path: '.env' })
+
+ dotenv.config({ path: '.env' })
 
 /**
  * @constant AppDataSource 
@@ -23,5 +24,5 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [Client, Order, Menu, Restaurant],
     synchronize: true, // A PASSER A TRUE POUR LA SYNCHRO AVEC LA BDD
-    logging: true,
+    logging: false,
 })

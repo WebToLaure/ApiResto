@@ -22,7 +22,7 @@ export class RestaurantControllers {
      * * De stocker le restaurant créé en BDD.
      */
     async createRestaurant(req: Request, res: Response) {
-        
+
         const restaurantCity = req.body.city;
 
         if (typeof (restaurantCity) !== 'string' || restaurantCity.length == 0) {
