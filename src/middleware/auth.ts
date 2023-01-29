@@ -15,9 +15,9 @@ export function authenticateJWT(req: express.Request, res: express.Response, nex
             if (err) {
 
                 return res.sendStatus(401);
-                
-               return  res.sendStatus(401);
-              
+
+                return res.sendStatus(401);
+
             }
 
             req.body.client = token;

@@ -1,11 +1,5 @@
 import { OrderService } from "../services/orderService";
 import { Request, Response } from "express";
-import { authenticateJWT } from "../middleware/auth";
-import * as jwt from 'jsonwebtoken';
-import { Order } from "../entities/order";
-import { Restaurant } from "../entities/restaurant";
-import { Menu } from "../entities/menu";
-import { Client } from "../entities/client";
 
 
 const orderService = new OrderService();

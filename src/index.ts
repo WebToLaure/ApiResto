@@ -39,11 +39,6 @@ AppDataSource.initialize().then(async () => {
         }
     });
 
-    app.use('/api/menu', menuRouter);
-    app.use('/api/order', orderRouter);
-    app.use('/api/restaurant', restaurantRouter);
-    app.use('/api/client', clientRouter);
-
 
     // Add headers before the routes are defined
     app.use(function (req, res, next) {
@@ -69,6 +64,11 @@ AppDataSource.initialize().then(async () => {
     /************************************************
        * Add the route here
        */
+
+    app.use('/api/menu', menuRouter);
+    app.use('/api/order', orderRouter);
+    app.use('/api/restaurant', restaurantRouter);
+    app.use('/api/client', clientRouter);
 
 
 

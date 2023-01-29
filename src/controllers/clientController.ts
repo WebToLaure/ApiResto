@@ -14,33 +14,33 @@ const clientService = new ClientService();
 export class ClientControllers {
     async createClient(req: Request, res: Response) {
 
-        const surname : string = req.body.surname;
-        const password : string = req.body.password;
+        const surname: string = req.body.surname;
+        const password: string = req.body.password;
 
 
         if (surname.length <= 4 || surname == null) {
 
-             res.status(400).json({
+            res.status(400).json({
                 status: "FAIL",
                 data: undefined,
                 message: "le champs doit comprendre 4 caractères mini, avec des lettres"
             });
-            
+
             return;
         }
 
         if (password.length <= 5 || password == null) {
 
             res.status(400).json({
-               status: "FAIL",
-               data: undefined,
-               message: "le champs doit comprendre 5 caractères mini, avec des lettres"
-           });
-           
-           return;
-       }
+                status: "FAIL",
+                data: undefined,
+                message: "le champs doit comprendre 5 caractères mini, avec des lettres"
+            });
 
-        
+            return;
+        }
+
+
 
         bcrypt.hash(password, 10, async function (err: any, hash: string) {
 
@@ -87,7 +87,7 @@ export class ClientControllers {
             }
             bcrypt.compare(password, client.password, (err, result) => {
 
-                const accessToken = jwt.sign({ clientId: client.id, admin: client.admin }, accessTokenSecret);
+                const accessToken = jwt.sign({ clientId: client.id }, accessTokenSecret);
 
                 if (result === true) {
                     res.status(200).json({
