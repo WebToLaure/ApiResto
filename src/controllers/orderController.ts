@@ -10,8 +10,24 @@ import { Client } from "../entities/client";
 
 const orderService = new OrderService();
 
+/**@class OrderController
+ * 
+ * Une class permettant :
+ * * De réunir plusieurs méthodes liées à la construction de la partie Order (commande).
+ * * De contrôler les informations entrantes, de vérifier que le  protocole soit respecter et renseigné.
+ * * Celle-ci est dédiée uniquement à la création, à la récupération, à la mise à jour et à la suppression des commandes.
+ */
 export class OrderController {
 
+    /** 
+     * @method addOrder :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes, lors de la création d'une commande.
+     * * Vérifier et imposer que les contraintes soient bien respectées (le client, le restaurant, le menu etc ...)
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * De stocker la commande créé en BDD.
+     */
     async addOrder(req: Request, res: Response) {
         const clientId = req.body.client.clientId;
         const restaurantId: number = parseInt(req.body.restaurantId);
@@ -60,6 +76,13 @@ export class OrderController {
 
     }
 
+    /** 
+     * @method getOrders :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lors de la consultation de toutes les commandes par une personne.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès..
+     */
     async getOrders(req: Request, res: Response) {
 
         try {
@@ -79,10 +102,15 @@ export class OrderController {
                 message: "Internal Server Error"
             });
         }
-
-
     }
 
+    /** 
+     * @method getOrderById :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lors de la consultation d'une commande en particulier par une personne.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès..
+     */
     async getOrderById(req: Request, res: Response) {
 
         const id: number = parseInt(req.params.id);
@@ -115,6 +143,15 @@ export class OrderController {
 
     }
 
+    /** 
+     * @method updateOrder :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes et vérifier que le protocole de saisie ou de modification soient bien respectés.
+     * * Vérifier que la commande existe.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Valider et remplacer en cas de succès.
+     */
     async updateOrder(req: Request, res: Response) {
 
         const clientId = req.body.clientId;
@@ -188,6 +225,15 @@ export class OrderController {
         }
     };
 
+    /** 
+     * @method deleteOrder :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes et vérifier que le protocole de saisie ou de modification soient bien respectés.
+     * * Vérifier que la commande existe.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Supprimer la commande si le protocole est respecté.
+     */
     async deleteOrder(req: Request, res: Response) {
 
         const clientId = req.body.client.clientId;

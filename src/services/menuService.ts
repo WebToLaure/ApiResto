@@ -1,7 +1,18 @@
 import { Menu } from '../entities/menu';
 
+/**
+ * @class MenuService
+ * 
+ * Une class permettant :
+ * * De générer des requêtes SQL précise à une demande spécifique.
+ * * Celle-ci est liée uniquement à des requêtes CREATE, GET ALL / By Id, UPDATE et DELETE pour la partie menu.
+ */
 export class MenuService {
 
+    /** 
+     * @method addMenu :
+     * * Method avec requête SQL permettant de créer un nouveau menu avec "name et price" comme paramètres. 
+     */
     async addMenu(name: string, price: number): Promise<Menu | undefined> {
 
         const newMenu = new Menu();
@@ -18,6 +29,10 @@ export class MenuService {
         return undefined;
     };
 
+    /** 
+     * @method getMenus :
+     * * Method avec requête SQL permettant de récupérer tous les menus existants. 
+     */
     async getMenus(): Promise<Menu[] | undefined> {
 
         const menus = await Menu.find();
@@ -28,9 +43,12 @@ export class MenuService {
         }
 
         return undefined;
-
     };
 
+    /** 
+     * @method getMenuById :
+     * * Method avec requête SQL permettant de récupérer un menu existant via son id comme paramètre. 
+     */
     async getMenuById(id: number): Promise<Menu | undefined> {
 
         const menu = await Menu.findBy({ id });
@@ -41,9 +59,13 @@ export class MenuService {
         }
 
         return undefined;
+    };
 
-    };// renvoie le menu par son Id
 
+    /** 
+     * @method updateMenu :
+     * * Method avec requête SQL permettant de modifier ou de mettre jour les données d'un menu . 
+     */
     async updateMenu(id: number, name: string, price: number): Promise<Menu | undefined> {
 
         const menuUpdated = new Menu();
@@ -51,7 +73,6 @@ export class MenuService {
         menuUpdated.name = name;
         menuUpdated.price = price;
         menuUpdated.id = id;
-
 
         const menu = await menuUpdated.save();
 
@@ -63,6 +84,10 @@ export class MenuService {
 
     };
 
+    /** 
+     * @method deleteMenu :
+     * * Method avec requête SQL permettant de supprimer un menu via son id comme paramètre. 
+     */
     async deleteMenu(id: number): Promise<Menu | undefined> {
 
         const menu = await Menu.findOneBy({ id });

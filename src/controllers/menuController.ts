@@ -5,12 +5,29 @@ import { Request, Response } from "express";
 
 const menuService = new MenuService();
 
+/**@class MenuControllers
+ * 
+ * Une class permettant :
+ * * De réunir plusieurs méthodes liées à la construction de la partie menu.
+ * * De contrôler les informations entrantes, de les vérifier avant de les envoyer en base de données, suivant un protocole précis et renseigné.
+ * * Celle-ci est dédiée uniquement à la création, à la récupération, à la mise à jour et à la suppression des menus.
+ */
+
 export class MenuControllers {
+
+    /** 
+     * @method CreateMenu :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes, lors de la création d'un menu.
+     * * Vérifier et imposer que les contraintes soient bien respectées (name, price, type etc ...)
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * De stocker le menu créé en BDD.
+     */
     async CreateMenu(req: Request, res: Response) {
         const name = req.body.name;
         const price = req.body.price;
         const admin = req.body.admin;
-
 
         if (!name) {
             res.status(400).json({
@@ -68,6 +85,14 @@ export class MenuControllers {
             });
         }
     }
+
+    /** 
+     * @method getAllMenus :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lors de la consultation de tous les menus par une personne.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès..
+     */
     async getAllMenus(_req: Request, res: Response) {
 
         try {
@@ -88,6 +113,13 @@ export class MenuControllers {
         }
     }
 
+    /** 
+     * @method getOneMenu :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes lors de la consultation d'un menu en particulier par une personne.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès..
+     */
     async getOneMenu(req: Request, res: Response) {
 
         const id: number = parseInt(req.params.id); // permet de recup l'id(en string) sous forme de number
@@ -118,6 +150,16 @@ export class MenuControllers {
             });
         }
     }
+
+    /** 
+     * @method updateMenu :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes et vérifier que le protocole de saisie ou de modification soient bien respectés.
+     * * Vérifier que le menu existe.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Valider et remplacer en cas de succès.
+     */
     async updateMenu(req: Request, res: Response) {
 
         const name = req.body.name;
@@ -166,6 +208,15 @@ export class MenuControllers {
         }
     }
 
+    /** 
+     * @method deleteMenu :
+     * 
+     * Une méthode permettant de :
+     * * Controler les données entrantes et vérifier que le protocole de saisie ou de modification soient bien respectés.
+     * * Vérifier que le menu existe.
+     * * Renvoyer un message d'avertissement en cas d'erreur ou de succès.
+     * * Supprimer le menu si le protocole est respecté.
+     */
     async deleteMenu(req: Request, res: Response) {
 
         const id: number = parseInt(req.params.id);
