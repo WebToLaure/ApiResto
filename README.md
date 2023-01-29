@@ -1,5 +1,5 @@
 # PROJET API REST O
-## Développement prototype du Backend
+## Dévelopment prototype Backend with TypeORM
 
 
 
@@ -61,7 +61,7 @@ git pull
                                                          
                                               
                                               
-                                                                       API 
+                                                               API 
 
 
 ---
