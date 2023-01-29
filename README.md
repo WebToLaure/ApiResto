@@ -20,7 +20,7 @@ git pull
 * TypeORM
 
 **Dependencies:**
-    ```
+```
 * npm           
 * nodemon   
 * bcrypt.js
@@ -28,7 +28,7 @@ git pull
 * dotenv
 * pg
 * reflect-metadata
-    ````
+```
 **Dev dependencies:**
 * @types/bcrypt: "^5.0.0",
 * @types/express: "^4.17.15",
@@ -85,7 +85,7 @@ Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/down
 |----------------------------------------------------------------------------------------------------------------------|
 |  Verbe HTTP  |          Endpoint           |           Actions                   |  :warning:GET BY ID:sparkler:     |
 |              |                             |                                     |                                   |
-|:-------------|:---------------------------:|:-----------------------------------:|:---------------------------------:|           
+|----------------------------------------------------------------------------------------------------------------------|          
 |  GET         |     /restaurant/    (:id)   |    Lister les menus                 | (Ajout `:id` pour lister par id)  | 
 |  GET         |     /order/         (:id)   |    Lister les commandes             | (Ajout `:id` pour lister par id)  |
 |  GET         |     /menu/          (:id)   |    Lister les restaurants           | (Ajout `:id` pour lister par id)  |
@@ -95,13 +95,13 @@ Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/down
 |  POST        |     /restaurant/register    |    Création restaurant              |                                   |
 |  POST        |     /menu                   |    Création menu                    |                                   |
 |  POST        |     /order                  |    Création d'une commande          |                                   |
-|----------------------------------------------------------------------------------------------------------------------|
-|                                                                                  |                                   |
+|--------------|-------------------------------------------------------------------------------------------------------|
+|              |                                                                   |                                   |
 |  PUT         |     /restaurant/:id         |    Modifier la commande par l'id    |                                   |
 |  PUT         |     /menu/:id               |    Modifier la commande par l'id    |                                   |
 |  PUT         |     /order/:id              |    Modifier la commande par l'id    |                                   |
-|----------------------------------------------------------------------------------------------------------------------|
-|                                                                                  |                                   |
+|--------------|-------------------------------------------------------------------------------------------------------|
+|              |                                                                   |                                   |
 |  DELETE      |     /restaurant/:id         |    Annule le restaurant par l'id    |                                   |
 |  DELETE      |     /menu/:id               |    Annule le menu par l'id          |                                   |
 |  DELETE      |     /order/:id              |    Annule la commande par l'id      |                                   |
