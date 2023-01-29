@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import * as dotenv from 'dotenv';
 import { Client } from "../entities/client";
-import { accessTokenSecret } from "../middleware/auth";
+import { accessTokenSecret} from "../middleware/auth";
 import { Index } from "typeorm";
 
 
@@ -68,8 +68,9 @@ export class ClientControllers {
     }
 
     async loginClient(req: Request, res: Response) {
-        const surname = req.body.surname;
-        const password = req.body.password;
+        
+        const surname :string = req.body.surname;
+        const password:string = req.body.password;
 
 
         try {
