@@ -1,4 +1,7 @@
-##### Template node Express typescript
+# PROJET API REST O
+## Développement prototype du Backend
+
+
 
 **Basic commands are:**
 
@@ -45,20 +48,20 @@ git pull
   * npm install express @types/express pg ts-node typeorm typescript
   * npm install nodemon -g
   * npm install jsonwebtoken
-  * npm 
+  * npm i bcrypt
   * start dev server
   * npm start
 
 
 
 
-                                                        PROJET API RESTO
+                                                                
                                                     
                                                     
-                                                 Développement prototype du Backend 
+                                                         
                                               
                                               
-                                                             API 
+                                                                       API 
 
 
 ---
@@ -70,24 +73,26 @@ git pull
 
 - API développée en **Typescript**, sur la base de quatre TABLES: Client, Restaurant, Menu, et Order avec **TypeORM**.
 
-- Création de **4 DOSSIERS** : **entities, services, controllers, et routes:**
+- Création de **4 DOSSIERS** pour optimiser l'organisation du code: 
 
-- Entities: création des tables de la BDDR avec TypeORM
-- Services: requêtes auprès de la base de données
-- Controllers: logique de fonctionnement
-- Routes: les routes 
+1. **Entities**: création des tables de la BDDR avec TypeORM
+2. **Services**: requêtes auprès de la base de données
+3. **Controllers**: code d'implémentation des routes pour chaque ressource
+4. **Routes**: création d'une liste de toutes les routes d'applications pour chaque ressource.
 
-- Chaque dossier possède un **FICHIER client, restaurant, menu et order.** 
+- Chaque **dossier** possède un **FICHIER client, restaurant, menu et order**.</br>  
+
+- Fichier principal **index** : permet à Express d'utiliser ces routes avec app.use();, le préfixe de route utilisé automatiquement, et les références d'itinéraire. 
 
 - Création d'un **dossier module** dans lequel se trouve le **fichier clientData**.
 
-- Dossier middleware** pour les fichiers liés aux vérifications de l'intégrité des données à l'aide d'une signature numérique.
+- Dossier **middleware** pour les fichiers liés aux vérifications de l'intégrité des données à l'aide d'une signature numérique.
 
 
 
 ##### ROUTES
 
-Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/download)  
+Plateforme de test développement API utilisée : [Insomnia](https://insomnia.rest/download)  
 
  * Serveur : http://localhost:8080/api/
 
@@ -95,9 +100,9 @@ Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/down
 
 |  Verbe HTTP  |          Endpoint           |           Actions                   |  :warning:GET BY ID:sparkler:     |
 |--------------|-----------------------------|-------------------------------------|-----------------------------------|          
-|  GET         |     /restaurant/    (:id)   |    Liste les menus                  | (Ajout `:id` pour lister par id)  | 
-|  GET         |     /order/         (:id)   |    Liste les commandes              | (Ajout `:id` pour lister par id)  |
-|  GET         |     /menu/          (:id)   |    Liste les restaurants            | (Ajout `:id` pour lister par id)  |
+|  GET         |     /restaurant/    (:id)   |    Liste les menus                  | (Ajouter `:id` pour lister par id)| 
+|  GET         |     /order/         (:id)   |    Liste les commandes              | (Ajouter `:id` pour lister par id)|
+|  GET         |     /menu/          (:id)   |    Liste les restaurants            | (Ajouter `:id` pour lister par id)|
 |--------------|-----------------------------|-------------------------------------|-----------------------------------|
 |  POST        |     /client/register        |    Enregistrement nouveau client    |                                   | 
 |  POST        |     /client/login           |    Authentification client          |                                   |
@@ -116,24 +121,52 @@ Plateforme de développement API utilisée:[Insomnia](https://insomnia.rest/down
 |  DELETE      |     /order/:id              |    Annule la commande par l'id      |                                   |
 |--------------|-----------------------------|-------------------------------------|-----------------------------------|
 
-##### Insertion dans Body pour accès requête:
 
-* register, login:
+##### INSERTION DANS BODY POUR ACCES REQUETE :
+
+ `api/register, api/login` :
+
 {
-   - surname:
-   - password:
+
+ > surname :
+   
+ > password :
+   
 }
-* restaurant: 
+
+`api/restaurant` : 
+
 {  
-   - city:
+> city :
+   
 }
-* Menu:
+
+`api/menu` :
+
 {
-     - name:
-     - price:
+
+> name :
+    
+> price :
+    
 }
-* order:
+
+`api/order` :
+
 {
-    - menuId:
-    - restaurantId:
+
+> menuId :
+    
+> restaurantId :
+    
 }
+
+
+#### PROTOTYPE 
+
+               - permet d'enregistrer un nouveau client et de l'authentifier. 
+         
+               - permet de créer, lire, modifier ou supprimer un restaurant, menu ou order. 
+
+
+
