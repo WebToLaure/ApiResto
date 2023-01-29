@@ -65,20 +65,15 @@ git pull
 
 
 ---
-> Choississez votre menu préféré chez Mc BOB, parmi les menus Mc Bobby HEwings (Chicken directly imported from Texas), Mc Bob Sinclarks, Mc Bob Tasty ( hot spicy ) ou même Mc Bob léponge (pour les végétariens), sur cette API REST O qui vous donne la possiblité de sélectionner votre restaurant préféré, votre menu préféré, en fonction de votre budget, et de passer commande.
 
+> API développée en **Typescript**, sur la base de quatre TABLES: Client, Restaurant, Menu, et Order avec **TypeORM**.
 
+> Création de **4 DOSSIERS** pour optimiser l'organisation du code: 
 
-
-
-- API développée en **Typescript**, sur la base de quatre TABLES: Client, Restaurant, Menu, et Order avec **TypeORM**.
-
-- Création de **4 DOSSIERS** pour optimiser l'organisation du code: 
-
-1. **Entities**: création des tables de la BDDR avec TypeORM
-2. **Services**: requêtes auprès de la base de données
-3. **Controllers**: code d'implémentation des routes pour chaque ressource
-4. **Routes**: création d'une liste de toutes les routes d'applications pour chaque ressource.
+> 1. **Entities**: création des tables de la BDDR avec TypeORM
+> 2. **Services**: requêtes auprès de la base de données
+> 3. **Controllers**: code d'implémentation des routes pour chaque ressource
+> 4. **Routes**: création d'une liste de toutes les routes d'applications pour chaque ressource.
 
 - Chaque **dossier** possède un **FICHIER client, restaurant, menu et order**.</br>  
 
