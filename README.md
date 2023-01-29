@@ -24,7 +24,7 @@ git pull
 
 **Dependencies:**
 ```
-* npm           
+* typeorm           
 * nodemon   
 * bcrypt.js
 * jsonwebtoken
